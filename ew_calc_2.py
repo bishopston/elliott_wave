@@ -36,13 +36,9 @@ print("difference between wave 1 and 2: " + str(max_diff))
 max_diff_index = _1_minus_2_diff.index(max_diff)
 #print(max_diff_index)
 wave_2_spot = wave_2[max_diff_index]
-print("wave 2: " + str(wave_2_spot))
 wave_1_spot = wave_1[max_diff_index]
-print("wave 1: " + str(wave_1_spot))
-print(close.index(wave_1[max_diff_index]))
-print(max(df.iloc[close.index(wave_1[max_diff_index]):(close.index(wave_1[max_diff_index])+1),0]))
+#print(close.index(wave_1[max_diff_index]))
 wave_5_spot = max(close[(close.index(wave_1[max_diff_index])):])
-print("wave 5: " + str(wave_5_spot))
 
 
 #find wave_3_spot and wave_4_spot
@@ -66,7 +62,15 @@ print("difference between wave 3 and 4: " + str(max_diff_3_4))
 max_diff_3_4_index = _3_minus_4_diff.index(max_diff_3_4)
 #print(max_diff_3_4_index)
 wave_4_spot = wave_4[max_diff_3_4_index]
-print("wave 4: " + str(wave_4_spot))
 wave_3_spot = wave_3[max_diff_3_4_index]
+print("wave 1: " + str(wave_1_spot))
+print("wave 1 date: " + str(max(df.iloc[close.index(wave_1[max_diff_index]):(close.index(wave_1[max_diff_index])+1),0])))
+print("wave 2: " + str(wave_2_spot))
+print("wave 2 date: " + str(max(df.iloc[close.index(wave_2[max_diff_index]):(close.index(wave_2[max_diff_index])+1),0])))
 print("wave 3: " + str(wave_3_spot))
-print(close.index(wave_3[max_diff_3_4_index]))
+print("wave 3 date: " + str(max(df.iloc[close.index(wave_3[max_diff_3_4_index]):(close.index(wave_3[max_diff_3_4_index])+1),0])))
+print("wave 4: " + str(wave_4_spot))
+print("wave 4 date: " + str(max(df.iloc[close.index(wave_4[max_diff_3_4_index]):(close.index(wave_4[max_diff_3_4_index])+1),0])))
+print("wave 5: " + str(wave_5_spot))
+print("wave 5 date: " + str(max(df.iloc[close.index(wave_5_spot):(close.index(wave_5_spot)+1),0])))
+#print(close.index(wave_3[max_diff_3_4_index]))
