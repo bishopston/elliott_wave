@@ -1,6 +1,6 @@
 import pandas as pd
 
-df = pd.read_csv("/home/alexandros/tech_analysis/ew_playground/BTC-USD_reduced.csv", sep=',',
+df = pd.read_csv("/home/alexandros/tech_analysis/ew_playground/AAPL.csv", sep=',',
                 encoding="ISO-8859-7", header=0,
                 names=['date','open','high','low','close','adj_close','volume'])
 
@@ -46,8 +46,8 @@ for i in close[(close.index(wave_1_spot)+1):close.index(wave_5_spot)]:
     #print(i)
     
     closeindex = close.index(i)
-    #check that accessed element is max between wave 1 and 5, accessed element is greater than wave 1 by 30% and wave 3 is longer than wave 1
-    if i > max(close[close.index(wave_1_spot):closeindex]) and i > (1.33*wave_1_spot) and (closeindex - close.index(wave_1_spot) > close.index(wave_1_spot)):
+    #check that accessed element is max between wave 1 and 5, wave 3 is greater than 1,5 and wave 3 is longer than wave 1
+    if i > max(close[close.index(wave_1_spot):closeindex]) and (i - wave_2_spot) > wave_1_spot and (i - wave_2_spot) > (wave_5_spot - i) and (closeindex - close.index(wave_1_spot) > close.index(wave_1_spot)):
         #access all elements after i and up to wave 5
         for j in close[(closeindex+1):close.index(wave_5_spot)]:
             #check that accessed element is greater than i and greater than wave 1
