@@ -1,0 +1,2 @@
+ew_calc_1: waves2,1,5
+ew_calc_2: waves2,1,5,3,4
