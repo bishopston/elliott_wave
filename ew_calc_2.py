@@ -1,6 +1,6 @@
 import pandas as pd
 
-df = pd.read_csv("C:/Alex/elliott_wave/elliott_wave/AAPL.csv", sep=',',
+df = pd.read_csv("~/tech_analysis/ew_playground/AAPL.csv", sep=',',
                 encoding="ISO-8859-7", header=0,
                 names=['date','open','high','low','close','adj_close','volume'])
 

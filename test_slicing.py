@@ -1,32 +1,13 @@
 import pandas as pd
+import sys
 
-my_dataset = [6,5,7,3,8,12,45,2,9,10,56]
+df = pd.read_csv("~/tech_analysis/ew_playground/S&P 500 Historical Data.csv", sep=',',
+                encoding="ISO-8859-7", header=0,
+                names=['date','close','open','high','low','volume','change'])
 
-print(my_dataset[3:])
-#"""
-close = []
+#df["close"] = df["close"].values[::-1]
+#df = df.sort_index(axis=1 ,ascending=False)
+df = df.iloc[::-1]
+print(df.head())
 
-for i in my_dataset:
-    close.append(i)
-
-_1_minus_2 = []
-_1_minus_2_diff = []
-
-for i in close[1:]:
-    
-    print(i)
-    closeindex = close.index(i)
-    print(closeindex)
-    print(close[:closeindex])
-    if i > max(close[:closeindex]):
-        #_1_minus_2 = []
-        for j in close[(closeindex+1):]:
-            print(j)
-            if j < i:
-                _1_minus_2.append(j)
-                _1_minus_2_diff.append(i-j)
-
-print(_1_minus_2)
-print(_1_minus_2_diff)
-print(max(_1_minus_2_diff))
-#"""
+df.to_csv('~/tech_analysis/ew_playground/S&P 500 Historical Data_reversed.csv', index=None, sep=',', header=True)
