@@ -1,6 +1,7 @@
 import pandas as pd
+import sys
 
-df = pd.read_csv("C:/Alex/elliott_wave/elliott_wave/AAPL.csv", sep=',',
+df = pd.read_csv("C:/Alex/elliott_wave/elliott_wave/BTC-USD_reduced.csv", sep=',',
                 encoding="ISO-8859-7", header=0,
                 names=['date','open','high','low','close','adj_close','volume'])
 
@@ -13,8 +14,11 @@ wave_1 = []
 wave_2 = []
 wave_3 = []
 wave_4 = []
+wave_a = []
+wave_b = []
 _1_minus_2_diff = []
 _3_minus_4_diff = []
+_b_minus_a_diff = []
 
 try:
     #find wave_1_spot and wave_2_spot
@@ -57,13 +61,33 @@ try:
                     wave_4.append(j)
                     wave_3.append(i)
         
-
     max_diff_3_4 = max(_3_minus_4_diff)
     print("difference between wave 3 and 4: " + str(max_diff_3_4))
     max_diff_3_4_index = _3_minus_4_diff.index(max_diff_3_4)
     #print(max_diff_3_4_index)
     wave_4_spot = wave_4[max_diff_3_4_index]
     wave_3_spot = wave_3[max_diff_3_4_index]
+
+    #find wave_a_spot and wave_b_spot
+    for i in close[(close.index(wave_5_spot)+1):]:
+        closeindex = close.index(i)
+        #check that accessed element is min so far
+        if i < min(close[(close.index(wave_5_spot)):closeindex]):
+            #access all elements after i
+            for j in close[(closeindex+1):]:
+                #check that accessed element is smaller than i by at least 20%
+                if round((j-i)/i,4) > 0.2:
+                    _b_minus_a_diff.append((round((j-i)/i,4)))
+                    wave_b.append(j)
+                    wave_a.append(i)    
+
+    max_diff_b_a = max(_b_minus_a_diff)
+    print("difference between wave a and b: " + str(max_diff_b_a))
+    max_diff_b_a_index = _b_minus_a_diff.index(max_diff_b_a)
+    wave_a_spot = wave_a[max_diff_b_a_index]
+    wave_b_spot = wave_b[max_diff_b_a_index]
+    wave_c_spot = min(close[(close.index(wave_b[max_diff_b_a_index])):])
+
     print("wave 1: " + str(wave_1_spot))
     print("wave 1 date: " + str(max(df.iloc[close.index(wave_1[max_diff_index]):(close.index(wave_1[max_diff_index])+1),0])))
     print("wave 2: " + str(wave_2_spot))
@@ -75,6 +99,13 @@ try:
     print("wave 5: " + str(wave_5_spot))
     print("wave 5 date: " + str(max(df.iloc[close.index(wave_5_spot):(close.index(wave_5_spot)+1),0])))
     #print(close.index(wave_3[max_diff_3_4_index]))
+    print("wave a: " + str(wave_a_spot))
+    print("wave a date: " + str(max(df.iloc[close.index(wave_a[max_diff_b_a_index]):(close.index(wave_a[max_diff_b_a_index])+1),0])))
+    print("wave b: " + str(wave_b_spot))
+    print("wave b date: " + str(max(df.iloc[close.index(wave_b[max_diff_b_a_index]):(close.index(wave_b[max_diff_b_a_index])+1),0])))
+    print("wave c: " + str(wave_c_spot))
+    print("wave c date: " + str(max(df.iloc[close.index(wave_c_spot):(close.index(wave_c_spot)+1),0])))
+
 
 except:
     print(sys.exc_info()[1])
