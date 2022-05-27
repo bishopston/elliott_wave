@@ -1,9 +1,9 @@
 import pandas as pd
 import sys
 
-df = pd.read_csv("~/tech_analysis/ew_playground/S&P 500 Historical Data_reversed.csv", sep=',',
+df = pd.read_csv("C:/Alex/elliott_wave/elliott_wave/S&P 500 Historical Data_reversed_numbers.csv", sep=',',
                 encoding="ISO-8859-7", header=0,
-                names=['date','open','high','low','close','adj_close','volume'])
+                names=['date','close','open','high','low','volume','change',])
 
 close = []
 
