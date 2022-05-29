@@ -3,7 +3,7 @@ import sys
 
 df = pd.read_csv("/home/alexandros/tech_analysis/ew_playground/HistoryClosesINLOTall.csv", sep=',',
                 encoding="ISO-8859-7", header=0,
-                names=['date','open','high','low','close','adj_close','volume'])
+                names=['date','close','change','open','high','low','volume','tziros'])
 
 close = []
 
